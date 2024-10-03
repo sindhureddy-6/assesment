@@ -51,3 +51,11 @@ except BulkIndexError as e:
 #for verifying indexed data
 # response = es.search(index=index_name, body={"query": {"match_all": {}}})
 # print("Search results:", response)
+def createCollection(p_collection_name):
+    if not es.indices.exists(index=p_collection_name):
+        es.indices.create(index=p_collection_name)
+        print(f"Collection '{p_collection_name}' created.")
+    else:
+        print(f"Collection '{p_collection_name}' already exists.")
+
+
